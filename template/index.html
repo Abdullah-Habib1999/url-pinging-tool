@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium URL Pinging Tool</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            display: none;
+            margin: 20px auto;
+        }
+        .pinging-results {
+            display: none;
+        }
+        .ad-banner-vertical {
+            width: 160px;
+            height: 600px;
+            background-color: #e9ecef;
+            text-align: center;
+            line-height: 600px;
+            color: #6c757d;
+            font-weight: bold;
+        }
+        .ad-banner-horizontal {
+            width: 100%;
+            height: 90px;
+            background-color: #e9ecef;
+            text-align: center;
+            line-height: 90px;
+            color: #6c757d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Top Horizontal Ad Banner -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="ad-banner-horizontal mb-3">
+                    Top Horizontal Banner Ad
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Vertical Ad Banner -->
+            <div class="col-lg-2 d-none d-lg-block">
+                <div class="ad-banner-vertical">
+                    Left Vertical Banner Ad
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="text-center mb-4">
+                    <i class="fas fa-globe fa-3x text-primary"></i>
+                    <h1 class="display-4">Premium URL Pinging Tool</h1>
+                    <p class="lead">Send signals to Search Engines to index your URLs or recrawl.</p>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><i class="fas fa-link"></i> Enter URLs to Ping</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="pingForm" method="post">
+                            <div class="form-group">
+                                <label for="urls"><i class="fas fa-list"></i> URLs (one per line):</label>
+                                <textarea id="urls" name="urls" class="form-control" rows="10" placeholder="https://www.example.com"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Ping URLs</button>
+                        </form>
+                        <!-- Loading spinner -->
+                        <div class="text-center mt-3">
+                            <div class="spinner-border text-primary" role="status" id="loadingSpinner">
+                                <span class="sr-only">Pinging...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Results Card -->
+                <div class="card mt-4 shadow-sm pinging-results">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0"><i class="fas fa-check-circle"></i> Pinging Results</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group" id="resultsList">
+                            <!-- Results will be injected here by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Vertical Ad Banner -->
+            <div class="col-lg-2 d-none d-lg-block">
+                <div class="ad-banner-vertical">
+                    Right Vertical Banner Ad
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Horizontal Ad Banner -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="ad-banner-horizontal mt-3">
+                    Bottom Horizontal Banner Ad
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript for loading animation -->
+    <script>
+        document.getElementById('pingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            // Simulate delay for pinging URLs
+            setTimeout(function() {
+                // Hide spinner and show results
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.querySelector('.pinging-results').style.display = 'block';
+                
+                // Simulate adding results to the list
+                var resultsList = document.getElementById('resultsList');
+                resultsList.innerHTML = ''; // Clear previous results
+                var urls = document.getElementById('urls').value.split('\n');
+                urls.forEach(function(url) {
+                    var li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = `Successfully pinged ${url.trim()} - Status Code: 200`;
+                    resultsList.appendChild(li);
+                });
+            }, 2000); // Simulate a 2-second delay
+        });
+    </script>
+</body>
+</html>
